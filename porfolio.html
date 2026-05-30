@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Magdy Designs</title>
+    <!-- Google Fonts for elegant typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="x-icon" href="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/logo_trans.png">
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --bg-secondary: #141414;
+            --text-color: #e0e0e0;
+            --accent-color: #d4af37; /* Gold/Bronze accent */
+            --accent-hover: #f9d86c;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-speed);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background-color: var(--accent-color);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-group {
+            display: flex;
+            align-items: center;
+            width: 250px;
+        }
+        
+        .nav-group.left { justify-content: flex-start; }
+        .nav-group.right { justify-content: flex-end; }
+
+        .logo {
+            flex-grow: 0;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo-img {
+            width: 150px; 
+            height: 60px;
+            object-fit: contain;
+            border: 1px dashed #444; 
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        nav ul li { display: inline-block; }
+
+        nav a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            margin: 0 10px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition-speed);
+        }
+
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--accent-color); }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background-color: var(--bg-color);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            border-top: 1px solid #222;
+        }
+
+        .mobile-menu-overlay.active { display: flex; }
+        .mobile-menu-overlay a { font-size: 1.2rem; margin: 1.5rem 0; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/pphoto.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn Up 1s ease-out;
+        }
+
+        .hero h1 { 
+            font-size: 4rem; 
+            margin-bottom: 0.5rem; 
+            color: #fff; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+        }
+
+        /* --- NEW: Hero Line Styling --- */
+        .hero-line {
+            width: 80px;         
+            height: 3px;         
+            background-color: var(--accent-color); 
+            margin: 15px auto 25px auto; 
+        }
+
+        .hero p { 
+            font-size: 1.2rem; 
+            font-weight: 300; 
+            margin-bottom: 2rem; 
+            color: #eee; 
+            text-shadow: 0 1px 5px rgba(0,0,0,0.3); 
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition-speed);
+            text-shadow: none;
+        }
+
+        .btn:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .btn-filled {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            margin-left: 1rem;
+        }
+
+        .btn-filled:hover { background: var(--accent-hover); }
+
+        /* --- About Section --- */
+        section { padding: 5rem 10%; }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image { position: relative; }
+        .about-image img { width: 100%; display: block; filter: grayscale(100%); transition: var(--transition-speed); }
+        .about-image:hover img { filter: grayscale(0%); }
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--accent-color);
+            z-index: -1;
+        }
+
+        .about-text h3 { font-size: 2rem; margin-bottom: 1.5rem; color: #fff; }
+        .about-text p { color: #aaa; margin-bottom: 1.5rem; font-weight: 300; }
+
+        .stats { display: flex; gap: 3rem; margin-top: 2rem; }
+        .stat-item h4 { font-size: 2.5rem; color: var(--accent-color); }
+        .stat-item span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* =========================================
+           NEW PROJECTS SLIDER SECTION (Peeking Slider)
+           ========================================= */
+        .projects-section {
+            background-color: var(--bg-secondary);
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+            margin: 0 auto;
+            perspective: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 60%;
+            height: 100%;
+            transform: translateX(-50%);
+            transition: all 0.6s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s;
+        }
+
+        .slide-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease-in-out 0.1s;
+            pointer-events: none;
+        }
+
+        .slide-info h3 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .slide-info p {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+            transform: translateX(-50%) scale(1);
+            filter: brightness(1);
+            pointer-events: auto;
+        }
+
+        .slide.active .slide-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide.active img:hover {
+            transform: scale(1.05);
+        }
+
+        .slide.prev {
+            opacity: 0.6;
+            z-index: 5;
+            transform: translateX(-110%) scale(0.85);
+            filter: brightness(0.4) grayscale(100%);
+            cursor: pointer;
+        }
+
+        .slide.next {
+            opacity: 0.6;
+            z-index: 5;
+            transform: translateX(10%) scale(0.85);
+            filter: brightness(0.4) grayscale(100%);
+            cursor: pointer;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition-speed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .indicators {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #444;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* --- Services Section --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: var(--transition-speed);
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .service-icon { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1.5rem; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
+        .service-card p { color: #aaa; font-size: 0.9rem; }
+
+        /* --- Contact Section --- */
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info h3 { font-size: 2rem; margin-bottom: 1.5rem; color: #fff; }
+        .contact-details div { margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+        .contact-details i { color: var(--accent-color); }
+        .contact-form form { display: flex; flex-direction: column; gap: 1.5rem; }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border: 1px solid #333;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus { border-color: var(--accent-color); }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #050505;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links { margin-bottom: 1.5rem; }
+        .social-links a { color: #fff; font-size: 1.2rem; margin: 0 10px; }
+        .social-links a:hover { color: var(--accent-color); }
+        .copyright { font-size: 0.8rem; color: #666; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            header { padding: 1rem 5%; justify-content: center; position: relative; }
+            .nav-group { display: none; }
+            .menu-toggle { display: block; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            .logo { padding: 0; }
+            .logo-img { width: 120px; height: 50px; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-container, .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+            
+            .slider-wrapper { height: 400px; }
+            .slide { width: 85%; }
+            .slide.prev { transform: translateX(-105%) scale(0.8); }
+            .slide.next { transform: translateX(5%) scale(0.8); }
+            .slide-info { padding: 1.5rem; }
+            .slide-info h3 { font-size: 1.5rem; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="nav-group left">
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="logo">
+            <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/logo_trans.png" alt="Logo" class="logo-img">
+        </div>
+
+        <div class="nav-group right">
+            <nav>
+                <ul>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 style="margin:2px">Mohamed Magdy</h1>
+            <div class="hero-line" style="margin:0px;width:450px"></div>
+            <p style="margin-top:0px;font-size:2.8rem">Designs</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn">View Portfolio</a>
+                <a href="#contact" class="btn btn-filled">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p class="subtitle">Architectural Vision & Interior Precision</p>
+        
+        <div class="about-container">
+            <div class="about-image">
+                <img src="logo_trans.png" alt="Architect Portrait">
+            </div>
+            <div class="about-text">
+                <h3>Designing Spaces, Defining Lifestyles.</h3>
+                <p>
+                    [Insert your biography here]. With over [Number] years of experience in the field of architecture and interior design, I specialize in creating functional yet aesthetically stunning environments. My philosophy revolves around the seamless integration of structure and art.
+                </p>
+                <p>
+                    I believe that every space tells a story. Whether it's a modern residential complex or a cozy interior renovation, I approach each project with a fresh perspective, focusing on light, material, and form.
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h4>25</h4>
+                        <span>Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <h4>6</h4>
+                        <span>Years Exp.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Slider Section (FULLY STATIC HTML) -->
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">Selected Projects</h2>
+        <p class="subtitle">A Glimpse Into My Recent Works</p>
+
+        <div class="slider-wrapper" id="sliderWrapper">
+            
+            <!-- STATIC SLIDES START -->
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/4-TANAR Resturant-WabiSabi-Saudi Arabia (1).jpg" alt="Project 1">
+                <div class="slide-info"><h3>Tanar Restaurant, Saudi Arabia</h3><p>Wabi Sabi Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/4-TANAR Resturant-WabiSabi-Saudi Arabia (2).jpg" alt="Project 1">
+                <div class="slide-info"><h3>Tanar Restaurant, Saudi Arabia </h3><p>Wabi Sabi Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/1-Luxurious Contemporary-Reseption-SODIC East New Heliopolis (1).jpg" alt="Project 10">
+                <div class="slide-info"><h3>Villa, Sodic Compound</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/1-Luxurious Contemporary-Reseption-SODIC East New Heliopolis (2).jpg" alt="Project 10">
+                <div class="slide-info"><h3>Villa, Sodic Compound</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/1-Luxurious Contemporary-Reseption-SODIC East New Heliopolis (3).jpg" alt="Project 10">
+                <div class="slide-info"><h3>Villa, Sodic Compound</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/1-Luxurious Contemporary-Reseption-SODIC East New Heliopolis (4).jpg" alt="Project 10">
+                <div class="slide-info"><h3>Villa, Sodic Compound</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/.r2.dev/mmdesign/" alt="Project 10">
+                <div class="slide-info"><h3>Zahret Larien Villa, Ismailia Governorte</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/-Mostafa Xiao Mu-2.jpg" alt="Project 5">
+                <div class="slide-info"><h3>Zahret Larien Villa, Ismailia Governorte</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/-Mostafa Xiao Mu-2.jpg" alt="Project 8">
+                <div class="slide-info"><h3>Zahret Larien Villa, Ismailia Governorte</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/" alt="Project 7">
+                <div class="slide-info"><h3>Villa, 5th Settlement</h3><p>New Classic Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/ suz2.jpg" alt="Project 9">
+                <div class="slide-info"><h3>Villa, Sheikh Zayed</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/" alt="Project 12">
+                <div class="slide-info"><h3>Villa, 5th Settlement</h3><p>Contemporary Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/" alt="Project 16">
+                <div class="slide-info"><h3>Villa, Administrative Capital</h3><p>Contemporary Luxury</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/" alt="Project 13">
+                <div class="slide-info"><h3>Villa, Administrative Capital</h3><p>Contemporary Luxury</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/" alt="Project 17">
+                <div class="slide-info"><h3>Villa, Administrative Capital</h3><p>Contemporary Luxury</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/" alt="Project 15">
+                <div class="slide-info"><h3>Villa, Administrative Capital</h3><p>Contemporary Luxury</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/3-Nora Hanem Caffee-WabiSabi-Saudi Arabia (1).jpg" alt="Project 14">
+                <div class="slide-info"><h3>Nora Hanem Cafe, Saudi Arabia</h3><p>Wabi Sabi Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/11-New Chinese- Coffe Shop-Downtown (1).jpg" alt="Project 19">
+                <div class="slide-info"><h3>Cali Cafe, Down Town</h3><p>Wabi Sabi Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/11-New Chinese- Coffe Shop-Downtown (2).jpg" alt="Project 20">
+                <div class="slide-info"><h3>Cali Cafe, Down Town</h3><p>Wabi Sabi Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/11-New Chinese- Coffe Shop-Downtown (3).jpg" alt="Project 18">
+                <div class="slide-info"><h3>Cali Cafe, Down Town</h3><p>Wabi Sabi Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/11-New Chinese- Coffe Shop-Downtown (3).jpg" alt="Project 18">
+                <div class="slide-info"><h3>Cali Cafe, Down Town</h3><p>Wabi Sabi Style</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://pub-590c2bb4e37f42fb9e33c3cbaff73c42.r2.dev/mmdesign/11-New Chinese- Coffe Shop-Downtown (3).jpg" alt="Project 18">
+                <div class="slide-info"><h3>Cali Cafe, Down Town</h3><p>Wabi Sabi Style</p></div>
+            </div>
+            <!-- STATIC SLIDES END -->
+
+        </div>
+
+        <div class="slider-controls">
+            <button class="control-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <div class="indicators" id="indicators">
+                <!-- STATIC DOTS START -->
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <!-- STATIC DOTS END -->
+            </div>
+            <button class="control-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Services</h2>
+        <p class="subtitle">Comprehensive Design Solutions</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-ruler-combined service-icon"></i>
+                <h3>Architectural Design</h3>
+                <p>Complete planning and design for residential and commercial buildings, focusing on structural integrity and visual appeal.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-couch service-icon"></i>
+                <h3>Interior Design</h3>
+                <p>Creating cohesive interior environments through careful selection of furniture, lighting, materials, and color palettes.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-pencil-ruler service-icon"></i>
+                <h3>3D Visualization</h3>
+                <p>High-quality rendering and modeling to help clients visualize the final outcome before construction begins.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-hard-hat service-icon"></i>
+                <h3>Site Supervision</h3>
+                <p>On-site management to ensure the project is executed according to the design plans and quality standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="subtitle">Start Your Project With Me</p>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p style="margin-bottom: 2rem; color: #aaa;">
+                    Interested in working together? Fill out the form or reach out directly via email or phone. I am available for freelance projects and collaborations.
+                </p>
+                <div class="contact-details">
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Cairo, Egypt</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <span>0155754147</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <span>free_egale67@ymail.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Tell me about your project" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-filled" style="border:none; cursor:pointer;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=100064233062881" target="_blank"><i class="fab fa-facebook fa-2xl"></i></a>
+            <a href="https://www.instagram.com/mohamed_magdy_designs?igsh=OTBnZWtmNmQwdjJr" target="_blank"><i class="fab fa-instagram fa-2xl"></i></a>
+            <a href="https://www.behance.net/free_egale740f_M", target="_blank"><i class="fab fa-behance fa-2xl"></i></a>
+        </div>
+        <p class="copyright">&copy; 2026 Mohamed Magdy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. Mobile Menu Toggle ---
+            const menuToggle = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.getElementById('mobile-nav-links');
+            const navLinks = document.querySelectorAll('nav a, .mobile-menu-overlay a');
+
+            menuToggle.addEventListener('click', () => {
+                mobileNavLinks.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNavLinks.classList.remove('active');
+                });
+            });
+
+
+            // --- 2. STATIC SLIDER LOGIC (No JS Generation) ---
+            
+            const sliderWrapper = document.getElementById('sliderWrapper');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicatorsContainer = document.getElementById('indicators');
+            
+            // Select existing elements from HTML
+            let slides = document.querySelectorAll('.slide');
+            let dots = document.querySelectorAll('.dot');
+            
+            let currentIndex = 0; // Start on the first slide
+
+            function updateSlider() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active', 'prev', 'next');
+                    if (index === currentIndex) {
+                        slide.classList.add('active');
+                    } 
+                    else if (index === currentIndex - 1 || (currentIndex === 0 && index === slides.length - 1)) {
+                        slide.classList.add('prev');
+                    } 
+                    else if (index === currentIndex + 1 || (currentIndex === slides.length - 1 && index === 0)) {
+                        slide.classList.add('next');
+                    }
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                if (currentIndex < 0) {
+                    currentIndex = slides.length - 1;
+                } else if (currentIndex >= slides.length) {
+                    currentIndex = 0;
+                }
+                updateSlider();
+            }
+
+            // Add Click Events to existing HTML elements
+            slides.forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                });
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                });
+            });
+
+            nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+            prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+
+            // Auto-play
+            let autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), 5000);
+            sliderWrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+            sliderWrapper.addEventListener('mouseleave', () => {
+                autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), 5000);
+            });
+
+            // Initialize
+            updateSlider();
+
+            // --- 3. Smooth Scrolling for anchor links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
